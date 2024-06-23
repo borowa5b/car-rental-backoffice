@@ -1,0 +1,28 @@
+:host * {
+  transition: all 500ms ease-in-out;
+}
+
+.header {
+  text-align: center;
+  padding-top: 25px;
+  padding-bottom: 25px;
+
+  > mat-icon {
+    background-color: azure;
+    border-radius: 100%;
+  }
+}
+
+.items {
+  a.menu-item {
+    border-radius: 0;
+    border-left: 5px solid;
+    border-left-color: rgba(0, 0, 0, 0);
+  }
+
+  a.selected-menu-item {
+    background: rgba(0, 0, 0, 0.05);
+    border-left: 5px solid;
+    border-left-color: var(--primary-color);
+  }
+}
