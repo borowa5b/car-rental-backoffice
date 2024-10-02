@@ -1,1 +1,66 @@
-<p>rentals-list works!</p>
+<mat-form-field>
+    <mat-label>Identifier</mat-label>
+    <input matInput type="text" [(ngModel)]="filters.id" />
+    <mat-hint>{{errorMessage}}</mat-hint>
+    @if (filters.id) {
+    <button
+      matSuffix
+      mat-icon-button
+      aria-label="Clear"
+      (click)="filters.id = ''"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+    }
+  </mat-form-field>
+  <button class="submit-button" mat-raised-button type="submit" (click)="filter()">Search</button>
+<mat-table [dataSource]="rentals" class="mat-elevation-z8">
+  <ng-container matColumnDef="position">
+    <mat-header-cell mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+    <mat-cell mat-cell *matCellDef="let i = index">
+      {{ resolveIndex(i) }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="id">
+    <mat-header-cell mat-header-cell *matHeaderCellDef>
+      Identifier
+    </mat-header-cell>
+    <mat-cell mat-cell *matCellDef="let element">
+      {{ element.id }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="status">
+    <mat-header-cell mat-header-cell *matHeaderCellDef>
+      Status
+    </mat-header-cell>
+    <mat-cell mat-cell *matCellDef="let element">
+      {{ element.status }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="creationDate">
+    <mat-header-cell mat-header-cell *matHeaderCellDef>
+      Created
+    </mat-header-cell>
+    <mat-cell mat-cell *matCellDef="let element">
+      {{ element.creationDate | date : "d.MM.yy, hh:mm" }}
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="rentalColumns"></mat-header-row>
+  <mat-row matRipple *matRowDef="let row; columns: rentalColumns"></mat-row>
+</mat-table>
+
+<br />
+<mat-paginator
+  [length]="totalElements"
+  [pageSize]="filters.pageSize"
+  [pageIndex]="filters.pageNumber - 1"
+  [pageSizeOptions]="[5, 10, 25, 100]"
+  (page)="onNextPage($event)"
+  [hidePageSize]="true"
+  aria-label="Select page"
+>
+</mat-paginator>

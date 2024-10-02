@@ -1,0 +1,19 @@
+.mat-column-position {
+  flex: 0 0 5%;
+}
+
+::ng-deep .mat-mdc-paginator-range-label{
+  display: none !important;
+}
+
+.submit-button {
+  margin-left: 32px;
+}
+
+mat-form-field {
+  width: 200px;
+}
+
+mat-form-field {
+  margin-bottom: 50px;
+}
