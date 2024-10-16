@@ -27,6 +27,11 @@ export class SideNavigationComponent {
       label: 'Rentals',
       route: 'rentals',
     },
+    {
+      icon: 'directions_car',
+      label: 'Cars',
+      route: 'cars',
+    },
   ]);
 }
 

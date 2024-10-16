@@ -1,0 +1,29 @@
+<mat-table [dataSource]="dataSource()" class="mat-elevation-z8">
+  <ng-container matColumnDef="position">
+    <mat-header-cell mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+    <mat-cell mat-cell *matCellDef="let i = index">
+      {{ resolveIndex(i) }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-content></ng-content>
+
+  <mat-header-row *matHeaderRowDef="columns()"></mat-header-row>
+  <mat-row matRipple *matRowDef="let row; columns: columns()"></mat-row>
+
+  <tr class="mat-row" *matNoDataRow>
+    <td class="mat-cell">No data</td>
+  </tr>
+</mat-table>
+
+<br />
+<mat-paginator
+  [length]="totalElements"
+  [pageSize]="filters.pageSize"
+  [pageIndex]="filters.pageNumber - 1"
+  [pageSizeOptions]="[5, 10, 25, 100]"
+  (page)="onNextPage($event)"
+  [hidePageSize]="true"
+  aria-label="Select page"
+>
+</mat-paginator>
