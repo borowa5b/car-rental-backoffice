@@ -10,14 +10,14 @@ import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Rental } from '../model/rental.model';
-import { RentalsFilter } from '../model/rentals.filter';
-import { TableComponent } from '../table/table.component';
-import { RentalsService } from './../rentals.service';
+import { Car } from '../model/car.model';
+import { CarsFilter } from '../model/cars.filter';
+import { RentalsService } from '../rentals.service';
+import { TableComponent } from "../table/table.component";
 import { clearErrors, handleErrors } from '../util/form.util';
 
 @Component({
-  selector: 'app-rentals-list',
+  selector: 'app-cars-list',
   standalone: true,
   imports: [
     MatTableModule,
@@ -31,20 +31,21 @@ import { clearErrors, handleErrors } from '../util/form.util';
     MatIconModule,
     FormsModule,
     MatButtonModule,
-    TableComponent,
-  ],
-  templateUrl: './rentals-list.component.html',
-  styleUrl: './rentals-list.component.scss',
+    TableComponent
+],
+  templateUrl: './cars-list.component.html',
+  styleUrl: './cars-list.component.scss',
 })
-export class RentalsListComponent implements OnInit {
-  rentalColumns: string[] = ['position', 'id', 'status', 'creationDate'];
-  rentals!: Rental[];
+export class CarsListComponent implements OnInit {
+  carColumns: string[] = ['position', 'id', 'fullName', 'creationDate'];
+  cars!: Car[];
   totalElements!: number;
-  filters: RentalsFilter = {
+  filters: CarsFilter = {
     id: null,
     pageNumber: 1,
     pageSize: 10,
   };
+  errorMessage?: string | null;
 
   constructor(
     private rentalsService: RentalsService,
@@ -58,7 +59,7 @@ export class RentalsListComponent implements OnInit {
       this.filters.pageNumber = params.get('pageNumber')
         ? (params.get('pageNumber') as unknown as number)
         : 1;
-      this.getRentals();
+      this.getCars();
     });
   }
 
@@ -73,13 +74,13 @@ export class RentalsListComponent implements OnInit {
 
   protected filter() {
     clearErrors();
-    this.getRentals();
+    this.getCars();
   }
 
-  private getRentals(): void {
-    this.rentalsService.getRentals(this.filters).subscribe({
+  private getCars(): void {
+    this.rentalsService.getCars(this.filters).subscribe({
       next: (result) => {
-        this.rentals = result.data;
+        this.cars = result.data;
         this.filters.pageNumber = result.pagination.number;
         this.filters.pageSize = result.pagination.size;
         this.totalElements = result.pagination.hasNext
