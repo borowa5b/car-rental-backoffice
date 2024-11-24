@@ -1,10 +1,10 @@
 export interface Car {
-  id: String;
-  brand: String;
-  model: String;
-  generation: String;
+  id: string;
+  brand: string;
+  model: string;
+  generation: string;
   productionYear: number;
-  color: String;
+  color: string;
   pricePerDay: number;
   quantity: number;
   creationDate: Date;

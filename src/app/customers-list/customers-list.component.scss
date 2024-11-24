@@ -1,0 +1,12 @@
+.submit-button {
+  margin-left: 32px;
+}
+
+mat-form-field {
+  margin-bottom: 50px;
+  width: 200px;
+}
+
+mat-form-field + mat-form-field {
+  margin-left: 20px;
+}

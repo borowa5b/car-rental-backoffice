@@ -32,6 +32,11 @@ export class SideNavigationComponent {
       label: 'Cars',
       route: 'cars',
     },
+    {
+      icon: 'group',
+      label: 'Customers',
+      route: 'customers'
+    }
   ]);
 }
 

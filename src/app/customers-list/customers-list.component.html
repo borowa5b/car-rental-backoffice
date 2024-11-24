@@ -1,0 +1,52 @@
+<mat-form-field>
+  <mat-label>Identifier</mat-label>
+  <input matInput type="text" [(ngModel)]="filters.id" />
+  <mat-hint id="id-error"></mat-hint>
+  @if (filters.id) {
+  <button
+    matSuffix
+    mat-icon-button
+    aria-label="Clear"
+    (click)="filters.id = ''"
+  >
+    <mat-icon>close</mat-icon>
+  </button>
+  }
+</mat-form-field>
+<button
+  class="submit-button"
+  mat-raised-button
+  type="submit"
+  (click)="filter()"
+>
+  Search
+</button>
+
+<app-table [columns]="customersColumns" [dataSource]="customers">
+  <ng-container matColumnDef="id">
+    <mat-header-cell mat-header-cell *matHeaderCellDef>
+      Identifier
+    </mat-header-cell>
+    <mat-cell mat-cell *matCellDef="let customer">
+      {{ customer.id }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="fullName">
+    <mat-header-cell mat-header-cell *matHeaderCellDef>
+      Full name
+    </mat-header-cell>
+    <mat-cell mat-cell *matCellDef="let customer">
+      {{ customer.name }} {{ customer.surname }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="creationDate">
+    <mat-header-cell mat-header-cell *matHeaderCellDef>
+      Created
+    </mat-header-cell>
+    <mat-cell mat-cell *matCellDef="let customer">
+      {{ customer.creationDate | date : "d.MM.yy, hh:mm" }}
+    </mat-cell>
+  </ng-container>
+</app-table>
