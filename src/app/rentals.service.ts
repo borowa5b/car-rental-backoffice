@@ -7,6 +7,8 @@ import { RentalsFilter } from './model/rentals.filter';
 import { toHttpParams } from './util/request.util';
 import { CarsFilter } from './model/cars.filter';
 import { Car } from './model/car.model';
+import { CustomersFilter } from './model/customers.filter';
+import { Customer } from './model/customer.model';
 
 @Injectable({
   providedIn: 'root',
@@ -24,6 +26,13 @@ export class RentalsService {
   getCars(filter: CarsFilter): Observable<Page<Car>> {
     const httpParams = toHttpParams(filter);
     return this.httpClient.get<Page<Car>>('http://localhost:8080/cars', {
+      params: httpParams,
+    });
+  }
+
+  getCustomers(filter: CustomersFilter): Observable<Page<Customer>> {
+    const httpParams = toHttpParams(filter);
+    return this.httpClient.get<Page<Customer>>('http://localhost:8080/customers', {
       params: httpParams,
     });
   }
