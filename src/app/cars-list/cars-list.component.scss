@@ -2,6 +2,18 @@
   margin-left: 32px;
 }
 
+.toolbar {
+  margin-bottom: 32px;
+  padding-left: 0px;
+  padding-right: 0px;
+
+  div {
+    display: flex;
+    justify-content: end;
+    width: 100%;
+  }
+}
+
 mat-form-field {
   margin-bottom: 50px;
   width: 200px;

@@ -1,3 +1,9 @@
+<mat-toolbar class="toolbar">
+  <h1>Cars</h1>
+  <div>
+    <button (click)="addCar()" mat-flat-button>Add car</button>
+  </div>
+</mat-toolbar>
 <mat-form-field>
   <mat-label>Identifier</mat-label>
   <input matInput type="text" [(ngModel)]="filters.id" />
@@ -47,7 +53,7 @@
       Created
     </mat-header-cell>
     <mat-cell mat-cell *matCellDef="let car">
-      {{ car.creationDate | date : "d.MM.yy, hh:mm" }}
+      {{ car.creationDate | date : "d.MM.yy, HH:mm" }}
     </mat-cell>
   </ng-container>
 </app-table>

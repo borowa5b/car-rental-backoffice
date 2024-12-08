@@ -1,19 +1,22 @@
-import { AsyncPipe, CommonModule, DatePipe } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRippleModule } from '@angular/material/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AddCarDialogComponent } from '../add-car-dialog/add-car-dialog.component';
 import { Car } from '../model/car.model';
 import { CarsFilter } from '../model/cars.filter';
 import { RentalsService } from '../rentals.service';
-import { TableComponent } from "../table/table.component";
+import { TableComponent } from '../table/table.component';
 import { clearErrors, handleErrors } from '../util/form.util';
 
 @Component({
@@ -25,14 +28,14 @@ import { clearErrors, handleErrors } from '../util/form.util';
     MatRippleModule,
     MatFormFieldModule,
     MatInputModule,
-    AsyncPipe,
     CommonModule,
     DatePipe,
     MatIconModule,
     FormsModule,
     MatButtonModule,
-    TableComponent
-],
+    TableComponent,
+    MatToolbarModule,
+  ],
   templateUrl: './cars-list.component.html',
   styleUrl: './cars-list.component.scss',
 })
@@ -51,7 +54,8 @@ export class CarsListComponent implements OnInit {
     private rentalsService: RentalsService,
     private route: ActivatedRoute,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -77,6 +81,19 @@ export class CarsListComponent implements OnInit {
     this.getCars();
   }
 
+  protected addCar() {
+    this.dialog
+      .open(AddCarDialogComponent)
+      .afterClosed()
+      .subscribe({
+        next: (succeded) => {
+          if (succeded) {
+            this.getCars();
+          }
+        },
+      });
+  }
+
   private getCars(): void {
     this.rentalsService.getCars(this.filters).subscribe({
       next: (result) => {
@@ -87,7 +104,10 @@ export class CarsListComponent implements OnInit {
           ? result.data.length * this.filters.pageNumber + 1
           : result.data.length;
       },
-      error: (errorResult) => handleErrors(errorResult, () => this.snackBar.open('Unknown error occurred')),
+      error: (errorResult) =>
+        handleErrors(errorResult, () =>
+          this.snackBar.open('Unknown error occurred')
+        ),
     });
   }
 }

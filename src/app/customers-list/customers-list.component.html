@@ -1,3 +1,6 @@
+<mat-toolbar class="toolbar">
+  <h1>Customers</h1>
+</mat-toolbar>
 <mat-form-field>
   <mat-label>Identifier</mat-label>
   <input matInput type="text" [(ngModel)]="filters.id" />
@@ -46,7 +49,7 @@
       Created
     </mat-header-cell>
     <mat-cell mat-cell *matCellDef="let customer">
-      {{ customer.creationDate | date : "d.MM.yy, hh:mm" }}
+      {{ customer.creationDate | date : "d.MM.yy, HH:mm" }}
     </mat-cell>
   </ng-container>
 </app-table>
