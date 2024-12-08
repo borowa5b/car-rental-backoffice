@@ -1,0 +1,120 @@
+<h2 mat-dialog-title>Add car</h2>
+<mat-dialog-content
+  >This modal form allows to add new car to database.</mat-dialog-content
+>
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+  <div>
+    <mat-form-field>
+      <mat-label>Brand</mat-label>
+      <mat-select formControlName="brandControl">
+        @for (brand of brands; track brand) {
+        <mat-option [value]="brand">{{ brand }}</mat-option>
+        }
+      </mat-select>
+      <mat-error *ngIf="formGroup.controls.brandControl.hasError('required')">
+        Field is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Model</mat-label>
+      <input name="model" type="text" formControlName="modelControl" matInput />
+      <mat-error *ngIf="formGroup.controls.modelControl.hasError('required')">
+        Field is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Generation</mat-label>
+      <input
+        name="generation"
+        type="text"
+        formControlName="generationControl"
+        matInput
+      />
+      <mat-error
+        *ngIf="formGroup.controls.generationControl.hasError('required')"
+      >
+        Field is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Production year</mat-label>
+      <input
+        name="productionYear"
+        type="number"
+        formControlName="productionYearControl"
+        min="1900"
+        max="3000"
+        matInput
+      />
+      <mat-error
+        *ngIf="formGroup.controls.productionYearControl.hasError('required')"
+      >
+        Field is <strong>required</strong>
+      </mat-error>
+      <mat-error
+        *ngIf="formGroup.controls.productionYearControl.hasError('min')"
+      >
+        Minmum value is <strong>1990</strong>
+      </mat-error>
+      <mat-error
+        *ngIf="formGroup.controls.productionYearControl.hasError('max')"
+      >
+        Maximum value is <strong>3000</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Paint color</mat-label>
+      <input
+        name="paintColor"
+        type="text"
+        formControlName="paintColorControl"
+        matInput
+      />
+      <mat-error
+        *ngIf="formGroup.controls.paintColorControl.hasError('required')"
+      >
+        Field is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Price per day</mat-label>
+      <input
+        name="pricePerDay"
+        type="number"
+        min="1"
+        formControlName="pricePerDayControl"
+        matInput
+      />
+      <mat-error
+        *ngIf="formGroup.controls.pricePerDayControl.hasError('required')"
+      >
+        Field is <strong>required</strong>
+      </mat-error>
+      <mat-error *ngIf="formGroup.controls.pricePerDayControl.hasError('min')">
+        Minmum value is <strong>1</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Quantity</mat-label>
+      <input
+        name="quantity"
+        type="number"
+        min="1"
+        formControlName="quantityControl"
+        matInput
+      />
+      <mat-error
+        *ngIf="formGroup.controls.quantityControl.hasError('required')"
+      >
+        Field is <strong>required</strong>
+      </mat-error>
+      <mat-error *ngIf="formGroup.controls.quantityControl.hasError('min')">
+        Minmum value is <strong>1</strong>
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button type="submit" mat-button>Add</button>
+  </mat-dialog-actions>
+</form>

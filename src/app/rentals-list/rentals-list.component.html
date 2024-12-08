@@ -1,3 +1,6 @@
+<mat-toolbar class="toolbar">
+  <h1>Rentals</h1>
+</mat-toolbar>
 <mat-form-field>
   <mat-label>Identifier</mat-label>
   <input matInput type="text" [(ngModel)]="filters.id" />
@@ -63,7 +66,7 @@
       Created
     </mat-header-cell>
     <mat-cell mat-cell *matCellDef="let rental">
-      {{ rental.creationDate | date : "d.MM.yy, hh:mm" }}
+      {{ rental.creationDate | date : "d.MM.yy, HH:mm" }}
     </mat-cell>
   </ng-container>
 </app-table>

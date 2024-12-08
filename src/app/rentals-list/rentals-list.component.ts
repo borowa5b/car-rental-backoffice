@@ -1,4 +1,4 @@
-import { AsyncPipe, CommonModule, DatePipe } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -9,12 +9,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Rental } from '../model/rental.model';
 import { RentalsFilter } from '../model/rentals.filter';
 import { TableComponent } from '../table/table.component';
-import { RentalsService } from './../rentals.service';
 import { clearErrors, handleErrors } from '../util/form.util';
+import { RentalsService } from './../rentals.service';
 
 @Component({
   selector: 'app-rentals-list',
@@ -25,13 +26,13 @@ import { clearErrors, handleErrors } from '../util/form.util';
     MatRippleModule,
     MatFormFieldModule,
     MatInputModule,
-    AsyncPipe,
     CommonModule,
     DatePipe,
     MatIconModule,
     FormsModule,
     MatButtonModule,
     TableComponent,
+    MatToolbarModule,
   ],
   templateUrl: './rentals-list.component.html',
   styleUrl: './rentals-list.component.scss',
@@ -86,7 +87,10 @@ export class RentalsListComponent implements OnInit {
           ? result.data.length * this.filters.pageNumber + 1
           : result.data.length;
       },
-      error: (errorResult) => handleErrors(errorResult, () => this.snackBar.open('Unknown error occurred')),
+      error: (errorResult) =>
+        handleErrors(errorResult, () =>
+          this.snackBar.open('Unknown error occurred')
+        ),
     });
   }
 }

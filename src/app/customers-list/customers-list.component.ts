@@ -1,4 +1,4 @@
-import { AsyncPipe, CommonModule, DatePipe } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -9,14 +9,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Car } from '../model/car.model';
-import { CarsFilter } from '../model/cars.filter';
+import { Customer } from '../model/customer.model';
+import { CustomersFilter } from '../model/customers.filter';
 import { RentalsService } from '../rentals.service';
 import { TableComponent } from '../table/table.component';
 import { clearErrors, handleErrors } from '../util/form.util';
-import { Customer } from '../model/customer.model';
-import { CustomersFilter } from '../model/customers.filter';
 
 @Component({
   selector: 'app-cars-list',
@@ -27,13 +26,13 @@ import { CustomersFilter } from '../model/customers.filter';
     MatRippleModule,
     MatFormFieldModule,
     MatInputModule,
-    AsyncPipe,
     CommonModule,
     DatePipe,
     MatIconModule,
     FormsModule,
     MatButtonModule,
     TableComponent,
+    MatToolbarModule,
   ],
   templateUrl: './customers-list.component.html',
   styleUrl: './customers-list.component.scss',
