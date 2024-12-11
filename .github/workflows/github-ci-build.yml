@@ -1,0 +1,59 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: Angular CI build
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "npm"
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build project
+        run: npm run build --if-present
+
+  deploy:
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Substitute variables
+        run: python3 .github/copy_secrets.py
+        env:
+          SECRETS: ${{ toJSON(secrets) }}
+          VARIABLES: ${{ toJSON(vars) }}
+
+      - name: Setup Fly.io ctl
+        uses: superfly/flyctl-actions/setup-flyctl@master
+
+      - name: Deploy application
+        run: flyctl deploy --remote-only
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}

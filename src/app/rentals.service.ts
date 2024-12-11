@@ -12,6 +12,7 @@ import { RentalsFilter } from './model/rentals.filter';
 import { toHttpParams } from './util/request.util';
 import { AddCarRequest } from './request/add-car.request';
 import { AddCarResponse } from './response/add-car.response';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -19,31 +20,32 @@ import { AddCarResponse } from './response/add-car.response';
 export class RentalsService {
   private readonly CACHE_TIMEOUT = 1000 * 60 * 60;
   private dictionaries$?: Observable<Dictionary[]>;
+  private carRentalUrl = environment.carRentalUrl;
 
   constructor(private httpClient: HttpClient) {}
 
   getRentals(filter: RentalsFilter): Observable<Page<Rental>> {
     const httpParams = toHttpParams(filter);
-    return this.httpClient.get<Page<Rental>>('http://localhost:8080/rentals', {
+    return this.httpClient.get<Page<Rental>>(`${this.carRentalUrl}/rentals`, {
       params: httpParams,
     });
   }
 
   getCars(filter: CarsFilter): Observable<Page<Car>> {
     const httpParams = toHttpParams(filter);
-    return this.httpClient.get<Page<Car>>('http://localhost:8080/cars', {
+    return this.httpClient.get<Page<Car>>(`${this.carRentalUrl}/cars`, {
       params: httpParams,
     });
   }
 
   addCar(request: AddCarRequest): Observable<AddCarResponse> {
-    return this.httpClient.put<AddCarResponse>('http://localhost:8080/cars', request)
+    return this.httpClient.put<AddCarResponse>(`${this.carRentalUrl}/cars`, request)
   }
 
   getCustomers(filter: CustomersFilter): Observable<Page<Customer>> {
     const httpParams = toHttpParams(filter);
     return this.httpClient.get<Page<Customer>>(
-      'http://localhost:8080/customers',
+      `${this.carRentalUrl}/customers`,
       {
         params: httpParams,
       }
@@ -53,7 +55,7 @@ export class RentalsService {
   getDictionaries(): Observable<Dictionary[]> {
     if (!this.dictionaries$) {
       this.dictionaries$ = this.httpClient
-        .get<Dictionary[]>('http://localhost:8080/dictionaries')
+        .get<Dictionary[]>(`${this.carRentalUrl}/dictionaries`)
         .pipe(
           share({
             connector: () => new ReplaySubject(1),
