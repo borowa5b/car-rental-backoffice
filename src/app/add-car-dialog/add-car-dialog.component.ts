@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, model } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -12,7 +12,7 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { RentalsService } from './../rentals.service';
+import { RentalsService } from '../rentals.service';
 import { Dictionaries } from '../model/dictionaries';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { handleErrors } from '../util/form.util';
@@ -58,7 +58,7 @@ export class AddCarDialogComponent {
   constructor(
     private dialogRef: MatDialogRef<AddCarDialogComponent>,
     private rentalsService: RentalsService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
   ) {
     this.rentalsService.getDictionaries().subscribe({
       next: (result) => {
@@ -89,7 +89,7 @@ export class AddCarDialogComponent {
         model: this.formGroup.controls.modelControl.value!,
         generation: this.formGroup.controls.generationControl.value!,
         productionYear: Number(
-          this.formGroup.controls.productionYearControl.value!
+          this.formGroup.controls.productionYearControl.value!,
         ),
         color: this.formGroup.controls.paintColorControl.value!,
         pricePerDay: Number(this.formGroup.controls.pricePerDayControl.value!),
@@ -102,7 +102,7 @@ export class AddCarDialogComponent {
         },
         error: (errorResult) =>
           handleErrors(errorResult, () =>
-            this.snackBar.open('Unknown error occurred')
+            this.snackBar.open('Unknown error occurred'),
           ),
       });
   }

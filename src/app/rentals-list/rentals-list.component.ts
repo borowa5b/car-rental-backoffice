@@ -15,7 +15,7 @@ import { Rental } from '../model/rental.model';
 import { RentalsFilter } from '../model/rentals.filter';
 import { TableComponent } from '../table/table.component';
 import { clearErrors, handleErrors } from '../util/form.util';
-import { RentalsService } from './../rentals.service';
+import { RentalsService } from '../rentals.service';
 
 @Component({
   selector: 'app-rentals-list',
@@ -51,7 +51,7 @@ export class RentalsListComponent implements OnInit {
     private rentalsService: RentalsService,
     private route: ActivatedRoute,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
   ) {}
 
   ngOnInit(): void {
@@ -89,7 +89,7 @@ export class RentalsListComponent implements OnInit {
       },
       error: (errorResult) =>
         handleErrors(errorResult, () =>
-          this.snackBar.open('Unknown error occurred')
+          this.snackBar.open('Unknown error occurred'),
         ),
     });
   }

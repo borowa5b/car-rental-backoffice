@@ -6,14 +6,14 @@
   <input matInput type="text" [(ngModel)]="filters.id" />
   <mat-hint id="id-error"></mat-hint>
   @if (filters.id) {
-  <button
-    matSuffix
-    mat-icon-button
-    aria-label="Clear"
-    (click)="filters.id = ''"
-  >
-    <mat-icon>close</mat-icon>
-  </button>
+    <button
+      matSuffix
+      mat-icon-button
+      aria-label="Clear"
+      (click)="filters.id = ''"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
   }
 </mat-form-field>
 <button
@@ -49,7 +49,7 @@
       Created
     </mat-header-cell>
     <mat-cell mat-cell *matCellDef="let customer">
-      {{ customer.creationDate | date : "d.MM.yy, HH:mm" }}
+      {{ customer.creationDate | date: "d.MM.yy, HH:mm" }}
     </mat-cell>
   </ng-container>
 </app-table>

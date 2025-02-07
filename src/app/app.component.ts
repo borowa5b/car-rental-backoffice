@@ -1,4 +1,4 @@
-import { Component, Signal, computed, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -23,7 +23,7 @@ import { SideNavigationComponent } from './side-navigation/side-navigation.compo
 export class AppComponent {
   title = 'car-rentals-back-office';
   collapsed = signal(false);
-  sidebarWidth = computed(() => this.collapsed() ? '65px' : '250px');
+  sidebarWidth = computed(() => (this.collapsed() ? '65px' : '250px'));
 
   protected collapse(): void {
     this.collapsed.set(!this.collapsed());

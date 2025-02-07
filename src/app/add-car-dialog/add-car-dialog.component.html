@@ -8,7 +8,7 @@
       <mat-label>Brand</mat-label>
       <mat-select formControlName="brandControl">
         @for (brand of brands; track brand) {
-        <mat-option [value]="brand">{{ brand }}</mat-option>
+          <mat-option [value]="brand">{{ brand }}</mat-option>
         }
       </mat-select>
       <mat-error *ngIf="formGroup.controls.brandControl.hasError('required')">

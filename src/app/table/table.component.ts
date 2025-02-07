@@ -1,5 +1,13 @@
-import { AsyncPipe, CommonModule, DatePipe } from '@angular/common';
-import { AfterContentInit, Component, ContentChild, ContentChildren, input, Input, QueryList, ViewChild } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import {
+  AfterContentInit,
+  Component,
+  ContentChild,
+  ContentChildren,
+  input,
+  QueryList,
+  ViewChild,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRippleModule } from '@angular/material/core';
@@ -7,12 +15,17 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
-import { MatColumnDef, MatHeaderRowDef, MatNoDataRow, MatRowDef, MatTable, MatTableModule } from '@angular/material/table';
-import { RentalsFilter } from '../model/rentals.filter';
+import {
+  MatColumnDef,
+  MatHeaderRowDef,
+  MatNoDataRow,
+  MatRowDef,
+  MatTable,
+  MatTableModule,
+} from '@angular/material/table';
 import { Filter } from '../model/filter';
 import { RentalsService } from '../rentals.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DataSource } from '@angular/cdk/collections';
 
 @Component({
   selector: 'app-table',
@@ -23,9 +36,7 @@ import { DataSource } from '@angular/cdk/collections';
     MatRippleModule,
     MatFormFieldModule,
     MatInputModule,
-    AsyncPipe,
     CommonModule,
-    DatePipe,
     MatIconModule,
     FormsModule,
     MatButtonModule,
@@ -40,7 +51,6 @@ export class TableComponent<T> implements AfterContentInit {
     pageNumber: 1,
     pageSize: 10,
   };
-
 
   @ContentChildren(MatHeaderRowDef)
   headerRowDefs!: QueryList<MatHeaderRowDef>;
@@ -63,13 +73,15 @@ export class TableComponent<T> implements AfterContentInit {
   constructor(
     private rentalsService: RentalsService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngAfterContentInit(): void {
-    this.columnDefs.forEach(columnDef => this.table.addColumnDef(columnDef));
-    this.rowDefs.forEach(rowDef => this.table.addRowDef(rowDef));
-    this.headerRowDefs.forEach(headerRowDef => this.table.addHeaderRowDef(headerRowDef));
+    this.columnDefs.forEach((columnDef) => this.table.addColumnDef(columnDef));
+    this.rowDefs.forEach((rowDef) => this.table.addRowDef(rowDef));
+    this.headerRowDefs.forEach((headerRowDef) =>
+      this.table.addHeaderRowDef(headerRowDef),
+    );
     this.table.setNoDataRow(this.noDataRow);
   }
 

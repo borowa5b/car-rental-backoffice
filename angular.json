@@ -27,7 +27,8 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              }
+              },
+              "src/silent-check-sso.html"
             ],
             "styles": [
               "@angular/material/prebuilt-themes/rose-red.css",

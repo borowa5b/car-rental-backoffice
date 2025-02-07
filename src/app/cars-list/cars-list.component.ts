@@ -55,7 +55,7 @@ export class CarsListComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private snackBar: MatSnackBar,
-    private dialog: MatDialog
+    private dialog: MatDialog,
   ) {}
 
   ngOnInit(): void {
@@ -106,7 +106,7 @@ export class CarsListComponent implements OnInit {
       },
       error: (errorResult) =>
         handleErrors(errorResult, () =>
-          this.snackBar.open('Unknown error occurred')
+          this.snackBar.open('Unknown error occurred'),
         ),
     });
   }

@@ -19,8 +19,8 @@ import { environment } from '../environments/environment';
 })
 export class RentalsService {
   private readonly CACHE_TIMEOUT = 1000 * 60 * 60;
+  private readonly carRentalUrl = environment.carRentalUrl;
   private dictionaries$?: Observable<Dictionary[]>;
-  private carRentalUrl = environment.carRentalUrl;
 
   constructor(private httpClient: HttpClient) {}
 
@@ -39,7 +39,10 @@ export class RentalsService {
   }
 
   addCar(request: AddCarRequest): Observable<AddCarResponse> {
-    return this.httpClient.put<AddCarResponse>(`${this.carRentalUrl}/cars`, request)
+    return this.httpClient.put<AddCarResponse>(
+      `${this.carRentalUrl}/cars`,
+      request,
+    );
   }
 
   getCustomers(filter: CustomersFilter): Observable<Page<Customer>> {
@@ -48,7 +51,7 @@ export class RentalsService {
       `${this.carRentalUrl}/customers`,
       {
         params: httpParams,
-      }
+      },
     );
   }
 
@@ -60,7 +63,7 @@ export class RentalsService {
           share({
             connector: () => new ReplaySubject(1),
             resetOnComplete: () => timer(this.CACHE_TIMEOUT),
-          })
+          }),
         );
     }
     return this.dictionaries$;

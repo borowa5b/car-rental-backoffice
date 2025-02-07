@@ -1,4 +1,16 @@
 <mat-toolbar class="toolbar">
   <h1>Dashboard</h1>
 </mat-toolbar>
-<p>dashboard works!</p>
+
+@if (user(); as userValue) {
+  <div class="flex items-center">
+    <p class="profile" data-testid="p-username">
+      Welcome {{ userValue.given_name }} {{ userValue.family_name }}
+    </p>
+    <button (click)="keycloakService.logout()" mat-raised-button>
+      Sign Out
+    </button>
+  </div>
+} @else {
+  <button mat-raised-button (click)="keycloakService.login()">Sign In</button>
+}
