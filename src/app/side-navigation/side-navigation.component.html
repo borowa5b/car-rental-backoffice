@@ -10,21 +10,23 @@
 <div class="items">
   <mat-nav-list>
     @for (item of menuItems(); track item.label) {
-    <a
-      mat-list-item
-      class="menu-item"
-      [routerLink]="item.route"
-      routerLinkActive="selected-menu-item"
-      #rla="routerLinkActive"
-      [activated]="rla.isActive"
-    >
-      <mat-icon
-        matListItemIcon
-        [fontSet]="rla.isActive ? 'material-icons' : 'material-icons-outlined'"
-        >{{ item.icon }}</mat-icon
+      <a
+        mat-list-item
+        class="menu-item"
+        [routerLink]="item.route"
+        routerLinkActive="selected-menu-item"
+        #rla="routerLinkActive"
+        [activated]="rla.isActive"
       >
-      <span *ngIf="!collapsed()" matListItemTitle>{{ item.label }}</span>
-    </a>
+        <mat-icon
+          matListItemIcon
+          [fontSet]="
+            rla.isActive ? 'material-icons' : 'material-icons-outlined'
+          "
+          >{{ item.icon }}</mat-icon
+        >
+        <span *ngIf="!collapsed()" matListItemTitle>{{ item.label }}</span>
+      </a>
     }
   </mat-nav-list>
 </div>

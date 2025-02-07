@@ -1,5 +1,9 @@
 export const environment = {
   production: false,
-  carRentalApiKey: 'test-api-key',
-  carRentalUrl: 'http://localhost:8080'
+  carRentalUrl: 'http://localhost:8105',
+
+  // Keycloak configuration
+  keycloakUrl: 'http://localhost:8081',
+  keycloakRealm: 'master',
+  keycloakClientId: 'car-rental',
 };

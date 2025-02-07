@@ -52,7 +52,7 @@ export class CustomersListComponent implements OnInit {
     private rentalsService: RentalsService,
     private route: ActivatedRoute,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
   ) {}
 
   ngOnInit(): void {
@@ -90,7 +90,7 @@ export class CustomersListComponent implements OnInit {
       },
       error: (errorResult) =>
         handleErrors(errorResult, () =>
-          this.snackBar.open('Unknown error occurred')
+          this.snackBar.open('Unknown error occurred'),
         ),
     });
   }

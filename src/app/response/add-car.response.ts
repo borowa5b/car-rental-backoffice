@@ -1,3 +1,3 @@
 export interface AddCarResponse {
-  carId: string
+  carId: string;
 }

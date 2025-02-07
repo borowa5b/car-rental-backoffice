@@ -3,27 +3,32 @@ import { RentalsListComponent } from './rentals-list/rentals-list.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CarsListComponent } from './cars-list/cars-list.component';
 import { CustomersListComponent } from './customers-list/customers-list.component';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 
 export const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'dashboard'
+    redirectTo: 'dashboard',
   },
   {
     path: 'dashboard',
-    component: DashboardComponent
+    component: DashboardComponent,
   },
   {
     path: 'rentals',
-    component: RentalsListComponent
+    component: RentalsListComponent,
   },
   {
     path: 'cars',
-    component: CarsListComponent
+    component: CarsListComponent,
   },
   {
     path: 'customers',
-    component: CustomersListComponent
-  }
+    component: CustomersListComponent,
+  },
+  {
+    path: 'unauthorized',
+    component: UnauthorizedComponent,
+  },
 ];

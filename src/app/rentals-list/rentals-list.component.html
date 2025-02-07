@@ -6,14 +6,14 @@
   <input matInput type="text" [(ngModel)]="filters.id" />
   <mat-hint id="id-error"></mat-hint>
   @if (filters.id) {
-  <button
-    matSuffix
-    mat-icon-button
-    aria-label="Clear"
-    (click)="filters.id = ''"
-  >
-    <mat-icon>close</mat-icon>
-  </button>
+    <button
+      matSuffix
+      mat-icon-button
+      aria-label="Clear"
+      (click)="filters.id = ''"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
   }
 </mat-form-field>
 
@@ -22,14 +22,14 @@
   <input matInput type="text" [(ngModel)]="filters.status" />
   <mat-hint id="status-error"></mat-hint>
   @if (filters.status) {
-  <button
-    matSuffix
-    mat-icon-button
-    aria-label="Clear"
-    (click)="filters.status = ''"
-  >
-    <mat-icon>close</mat-icon>
-  </button>
+    <button
+      matSuffix
+      mat-icon-button
+      aria-label="Clear"
+      (click)="filters.status = ''"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
   }
 </mat-form-field>
 
@@ -66,7 +66,7 @@
       Created
     </mat-header-cell>
     <mat-cell mat-cell *matCellDef="let rental">
-      {{ rental.creationDate | date : "d.MM.yy, HH:mm" }}
+      {{ rental.creationDate | date: "d.MM.yy, HH:mm" }}
     </mat-cell>
   </ng-container>
 </app-table>

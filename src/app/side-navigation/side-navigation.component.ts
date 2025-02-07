@@ -7,14 +7,20 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-side-navigation',
   standalone: true,
-  imports: [CommonModule, MatIconModule, MatListModule, MatIconModule, RouterModule],
+  imports: [
+    CommonModule,
+    MatIconModule,
+    MatListModule,
+    MatIconModule,
+    RouterModule,
+  ],
   templateUrl: './side-navigation.component.html',
   styleUrl: './side-navigation.component.scss',
 })
 export class SideNavigationComponent {
   @Input({ required: true })
   collapsed!: Signal<boolean>;
-  iconSize = computed(() => this.collapsed() ? '32px' : '100px');
+  iconSize = computed(() => (this.collapsed() ? '32px' : '100px'));
 
   protected menuItems: Signal<MenuItem[]> = signal<MenuItem[]>([
     {
@@ -35,8 +41,8 @@ export class SideNavigationComponent {
     {
       icon: 'group',
       label: 'Customers',
-      route: 'customers'
-    }
+      route: 'customers',
+    },
   ]);
 }
 
